@@ -18,7 +18,7 @@ sudo yum install yarn -y
 npm install -g typescript nodemon
 
 # setup project
-git clone https://github.com/GhettoBurger996/abc-school_backend
-cd abc-school_backend
+git clone https://github.com/GhettoBurger996/abc-school-backend
+cd abc-school-backend
 yarn install
 yarn start:dev
