@@ -13,10 +13,13 @@ sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
 sudo systemctl start postgresql-12.service 
 sudo systemctl enable postgresql-12.service 
 
-#starting the firewall and allowing the mariadb to access from port no. 5432
+#starting the firewall and allowing the postgres to access from port no. 5432
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
 sudo firewall-cmd --get-active-zones
 sudo firewall-cmd --zone=public --add-port=5432/tcp --permanent
 sudo firewall-cmd --reload
 sudo systemctl restart postgresql-12.service 
+
+# setup connection for postgres
+# sudo su - postgres
