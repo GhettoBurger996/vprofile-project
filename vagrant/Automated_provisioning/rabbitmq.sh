@@ -20,10 +20,20 @@ sudo systemctl start rabbitmq-server
 sudo systemctl enable rabbitmq-server
 sudo systemctl status rabbitmq-server
 
-sudo sh -c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
+sudo sh -c 'echo "[{rabbit,
+  [ 
+    {tcp_listeners, [5672]},
+    {loopback_users, []},
+    {rabbitmq_management, [{listener, [{port, 15672}]}]},
+    {rabbitmq_management, [{cors_allow_origins, ["*"]}]}
+  ]
+}]." > /etc/rabbitmq/rabbitmq.config'
+
 sudo rabbitmqctl add_user test test
 sudo rabbitmqctl set_user_tags test administrator
 sudo systemctl restart rabbitmq-server
+
+sudo rabbitmq-plugins enable rabbitmq_management
 
 # cleanup
 sudo rm -rf esl-erlang_23.3.1-1~centos~7_amd64.rpm
